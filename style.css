@@ -57,7 +57,7 @@ bottom:20px;
 #btn1:hover{
     background-color: #f88f16;
 }
-.btn2{
+.btn2 , .btn3{
     padding: 12px 20px;
     background:#f88f16;
     border:0;
