@@ -5,31 +5,21 @@ document.getElementById("btn1").addEventListener("click", function(){
 });
 
 
+click_to_convert.addEventListener('click',function(){
+    var speech = true;
+    window.SpeechRecognition = window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
 
-function runSpeechRecognition(){
+    recognition.addEventListener('result', e=>{
+        const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
 
-    var convert_text = document.getElementById("convert_text");
-    var action = document.getElementById("action");
-    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        convert_text.innerHTML = transcript;
+    })
 
-    var recognition = new SpeechRecognition();
-    console.log(recognition);
-
-    recognition.onstart = function (){
-        action.innerHTML = "<small> Listening, please speak...</small>"
+    if(speech == true){
+        recognition.start();
     }
-    recognition.onspeechend = function (){
-        action.innerHTML = "<small> Stopped Listening, hope you're done...</small>"
-    }
-    recognition.onresult = function (event){
-       var transcript = event.result[0][0].transcript;
-        var confidence = event.result[0][0].confidence;
-
-        console.log(transcript);
-        console.log(confidence);
-
-        convert_text.innerHTML = "<b>Text:</b>"
-        + transcript;
-    }
-recognition.start();
-}
+})
