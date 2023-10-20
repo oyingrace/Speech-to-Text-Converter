@@ -51,18 +51,23 @@ h1{
     font-size:15px;
     border-radius:5px;
     position: absolute;
-right:55px;
-bottom:20px;
+    right:55px;
+    bottom:20px;
+}
+#btn1.copied{
+    font-size:15px;
+    background-color:#480d00;
 }
 #btn1:hover{
     background-color: #f88f16;
 }
-.btn2 , .btn3{
-    padding: 12px 20px;
+.btn2{
+    padding: 10px 70px;
     background:#f88f16;
     border:0;
     outline:0;
     border-radius: 10px;
     cursor:pointer;
     color:white;
+    font-size: 16px;
 }

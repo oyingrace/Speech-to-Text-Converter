@@ -1,29 +1,65 @@
+//for the copy button
 document.getElementById("btn1").addEventListener("click", function(){
-    var textArea = document.getElementById("convert_text");
-    textArea.select();
-    document.execCommand('copy');
+    var copyText = document.getElementById("convert_text");
+    copyText.select();
+    document.execCommand("copy");
+
+
+var button = document.getElementById("btn1");
+button.innerHTML = "copied!";
+button.classList.add("copied");
+
+setTimeout(function(){
+    button.innerHTML = "Copy";
+    button.classList.remove("copied");
+}, 2000);
+
 });
 
 
+var  speechRecognition = window.webkitSpeechRecognition;
 
- var startButton = document.getElementById('start');
- var stopButton = document.getElementById('stop');
- var resultElement = document.getElementById('convert_text');
+var recognition = new speechRecognition()
+ 
+var convert_text = $("convert_text");
 
- var recognition = new webkitSpeechRecognition();
+var instructions = $("instructions");
 
- recognition.lang = window.navigator.language;
- recognition.interimResults = true;
+var content = ""
 
- startButton.addEventListener('click',()=>{
-    recognition.start();
- });
+recognition.continuous = true;
 
- stopButton.addEventListener('click',()=>{
-    recognition.stop();
- });
+//recognition is started
 
- recognition.addEventListener('convert_text', (event) =>{
-    const convert_text = event.results[event.results.length - 1][0].transcript;
-    resultElement.textContent = convert_text;
- });
+recognition.onstart = function (){
+    instructions.text("Speak, I'm Listening")
+}
+
+recognition.onspeechend = function(){
+    instructions.text("Not speaking")
+}
+
+recognition.onerror = function(){
+    instructions.text("Try Again")
+}
+
+recognition.onresult = function(event){
+var current = event.resultIndex;
+
+var transcript = event.results[current][0].transcript;
+
+content += transcript
+
+convert_text.val(content)
+}
+
+$("#start").click(function (event){
+    if(content.length){
+        content += ""
+    }
+    recognition.start()
+});
+
+convert_text.on('input', function (){
+    content = $(this).val()
+});
