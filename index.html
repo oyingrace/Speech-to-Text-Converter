@@ -1,27 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech-To-Text Converter</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="voice_to_text">
-        <h1>Convert Your <span class ="changecolor">Speech to Text</span> Seamlessly</h1>
-        <div class ="textarea-container">
-             <textarea id="convert_text"></textarea>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Speech to Text</title>
+  </head>
+  <body>
+    <div class="container">
+      <p class="heading">Speech to Text Converter</p>
+      <div class="options">
+        <div class="language">
+          <p>Choose Language</p>
+          <select name="input-language" id="language"></select>
+        </div>
+      </div>
+      <div class="line"></div>
+      <button class="btn record">
+        <div class="icon">
+          <ion-icon name="mic-outline"></ion-icon>
+          <img src="bars.svg" alt="" />
+        </div>
+        <p>Start Listening</p>
+      </button>
+      <p class="heading">Text :</p>
+      <div
+       id="textArea"
+      class="result"
+        spellcheck="false"
+        placeholder="Text will be shown here"
+      >
+        <p class="interim"></p>
+      </div>
+      <div class="buttons">
+        <button class="btn clear">
+          <ion-icon name="trash-outline"></ion-icon>
+          <p>Clear</p>
+        </button>
+        <button class="btn copy" id="copyBtn">
+            <ion-icon name="copy-outline"></ion-icon>
+          <p> Copy</p>
+          <div id="copyFdback"></div>
+        </button>
+      </div>
+    </div>
 
-               <button id="btn1">Copy</button>
-            
-          </div>
+    <!-- IONICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
 
-        <button id="start"
-         class ="btn2">Start</button>
-        <p id="instructions"></p>
-    </div> 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- LANGUAGES -->
+    <script src="languages.js"></script>
+
+    <!-- SCRIPT -->
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
